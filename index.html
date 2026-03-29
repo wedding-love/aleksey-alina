@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Алексей & Алина | Свадебное приглашение</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Базовые сбросы ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+            font-weight: 400;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            width: 100%;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-image: url('IMG_6307.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding-top: 80px;
+        }
+
+        .hero .names,
+        .hero .hero-sub {
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0px 0px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 8vw, 4rem);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-sub {
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 60px;
+                background-position: center 20%;
+            }
+            .names {
+                font-size: 2.2rem;
+                padding: 0 20px;
+            }
+            .hero-sub {
+                font-size: 0.9rem;
+            }
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .scroll-down span {
+            font-size: 0.7rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #111111;
+        }
+
+        .arrow-icon {
+            width: 30px;
+            height: 30px;
+            stroke: #111111;
+            stroke-width: 1.6;
+            fill: none;
+        }
+
+        @keyframes bounceSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        .bounce-animation {
+            animation: bounceSoft 2s infinite ease-in-out;
+        }
+
+        /* ===== Общие стили для секций ===== */
+        .small-divider {
+            width: 50px;
+            height: 1px;
+            background: #cccccc;
+            margin: 1rem auto 1.2rem;
+        }
+
+        /* ===== Гости (календарь) ===== */
+        .guests-block {
+            background-color: #ffffff;
+            padding: 4rem 1.5rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .guest-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .greeting-title {
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            font-weight: 500;
+            color: #111111;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+        }
+
+        .greeting-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #111111;
+            max-width: 680px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .calendar-wrapper {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 20px;
+            padding: 1.8rem 1.2rem 2rem;
+            margin-top: 1rem;
+        }
+
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .month-year {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #111111;
+            letter-spacing: -0.3px;
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: #111111;
+            background: #fafafa;
+            padding: 0.6rem 0;
+            border-radius: 40px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #111111;
+            background: #ffffff;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            color: #dddddd;
+        }
+
+        .heart-svg {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .heart-svg svg {
+            width: 100%;
+            height: 100%;
+        }
+        @media (max-width: 640px) {
+            .heart-svg { width: 36px; height: 36px; }
+        }
+        @media (max-width: 480px) {
+            .heart-svg { width: 32px; height: 32px; }
+            .weekdays, .calendar-days { gap: 4px; }
+            .calendar-day { font-size: 0.75rem; }
+        }
+
+        /* ===== Локация ===== */
+        .location-block {
+            background: #ffffff;
+            padding: 4rem 1.5rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .location-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .location-card {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid #eaeaea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .location-card h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #111111;
+        }
+
+        .location-address {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #111111;
+            margin: 1rem 0;
+        }
+
+        .location-image {
+            width: 100%;
+            border-radius: 20px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .location-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 300px;
+            transition: transform 0.3s;
+        }
+
+        .location-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-map {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #111111;
+            color: #ffffff;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            border-radius: 0;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-family: inherit;
+            margin-top: 1rem;
+        }
+        .btn-map:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Тайминг ===== */
+        .timeline-block {
+            background: #ffffff;
+            padding: 4rem 1.5rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .timeline-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 500;
+            margin-bottom: 3rem;
+            color: #111111;
+            letter-spacing: 0.02em;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #dddddd;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 0.5rem 0;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            text-align: right;
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            text-align: left;
+            margin-left: auto;
+        }
+
+        .timeline-time {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #111111;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-event {
+            font-size: 1.1rem;
+            color: #111111;
+            line-height: 1.4;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0.8rem;
+            width: 14px;
+            height: 14px;
+            background: #ffffff;
+            border: 2px solid #111111;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        @media (max-width: 1024px) {
+            .timeline { max-width: 90%; }
+            .timeline-content { width: 44%; }
+            .timeline-time { font-size: 1.4rem; }
+            .timeline-event { font-size: 1rem; }
+            .timeline-item::before { width: 12px; height: 12px; top: 0.6rem; }
+            .timeline-item { margin-bottom: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .timeline { max-width: 95%; }
+            .timeline-content { width: 42%; }
+            .timeline-time { font-size: 1.3rem; }
+            .timeline-event { font-size: 0.95rem; }
+            .timeline-item::before { width: 10px; height: 10px; top: 0.5rem; }
+            .timeline-item { margin-bottom: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .timeline { max-width: 100%; padding: 10px 0; }
+            .timeline-content { width: 40%; }
+            .timeline-time { font-size: 1.2rem; }
+            .timeline-event { font-size: 0.85rem; }
+            .timeline-item::before { width: 8px; height: 8px; top: 0.4rem; }
+            .timeline-item { margin-bottom: 1.8rem; }
+        }
+
+        /* ===== Дресс-код ===== */
+        .dresscode-block {
+            background: #ffffff;
+            padding: 4rem 1.5rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .dresscode-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .dresscode-title {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 500;
+            color: #111111;
+            margin-bottom: 1rem;
+        }
+
+        .dresscode-description {
+            font-size: 1rem;
+            color: #111111;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+
+        .palette {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            margin: 2rem 0 2.5rem;
+            flex-wrap: wrap;
+        }
+        .color-swatch {
+            text-align: center;
+        }
+        .color-square {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .brown { background: #2a1707; }
+        .blue { background: #c2ddf8; }
+        .burgundi { background: #39040e; }
+
+        /* ===== Слайдер ===== */
+        .slider-container {
+            position: relative;
+            max-width: 700px;
+            margin: 2rem auto 0;
+            overflow: hidden;
+            border-radius: 28px;
+        }
+        .slider-track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+        .slide {
+            flex: 0 0 100%;
+            text-align: center;
+        }
+        .slide img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            z-index: 10;
+        }
+        .slider-btn:hover {
+            background: #000000;
+        }
+        .btn-left { left: 10px; }
+        .btn-right { right: 10px; }
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #cccccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .dot.active {
+            background: #111111;
+            transform: scale(1.2);
+        }
+
+        /* ===== Пожелания ===== */
+        .wishes-block {
+            background: #ffffff;
+            padding: 4rem 1.5rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .wishes-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .wishes-title {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 500;
+            color: #111111;
+            margin-bottom: 1rem;
+        }
+
+        .wishes-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #111111;
+            margin-top: 1.5rem;
+            font-style: normal;
+        }
+
+        .wishes-text:first-of-type {
+            margin-top: 0;
+        }
+
+        /* ===== Присутствие (форма) ===== */
+        .presence-block {
+            background: #ffffff;
+            padding: 4rem 1.5rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .presence-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .presence-title {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 500;
+            color: #111111;
+            margin-bottom: 1rem;
+        }
+
+        .presence-sub {
+            font-size: 1rem;
+            color: #111111;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #111111;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            font-family: inherit;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background: #fff;
+            transition: border 0.2s;
+            color: #111111;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #111;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+            color: #111111;
+        }
+
+        .radio-group input,
+        .checkbox-group input {
+            width: auto;
+            margin-right: 0.3rem;
+        }
+
+        .custom-option {
+            margin-top: 0.8rem;
+            display: none;
+        }
+
+        .custom-option.active {
+            display: block;
+        }
+
+        .submit-btn {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border-radius: 0;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #333;
+        }
+
+        .soon-message {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #111111;
+            letter-spacing: 0.02em;
+            display: none;
+        }
+
+        /* ===== Контакты: обновленная версия ===== */
+        .contacts-block {
+            background: #ffffff;
+            padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+            border-bottom: 1px solid #eeeeee;
+            text-align: center;
+        }
+
+        .contacts-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contacts-title {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: #111111;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        /* текст про связь с молодыми (без эмодзи, обычный стиль) */
+        .young-couple-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #111111;
+            margin-bottom: 1.2rem;
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        /* текст организатора — теперь без курсива, как и текст молодых */
+        .contacts-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #111111;
+            margin-bottom: 2rem;
+            font-style: normal;
+        }
+
+        /* новая сетка для кнопок: жених+невеста в строке, организатор снизу на мобильных */
+        .couple-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            margin-bottom: 1.8rem;
+        }
+
+        .organizer-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            padding: 1.2rem 1rem;
+            border: 0.5px solid #cccccc;
+            text-decoration: none;
+            color: #111111;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: #ffffff;
+            flex: 1;
+        }
+
+        .couple-buttons .contact-btn {
+            flex: 1;
+            max-width: 220px;
+        }
+
+        .organizer-wrapper .contact-btn {
+            max-width: 280px;
+            width: 100%;
+        }
+
+        .contact-btn:hover {
+            border-color: #111111;
+            background: #fafafa;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .btn-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            color: #111111;
+        }
+
+        .btn-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            color: #111111;
+        }
+        
+        .btn-phone {
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #111111;
+            margin-top: 2px;
+        }
+        
+        .contact-btn:hover .btn-phone {
+            color: #111111;
+        }
+
+        /* стиль для иконки телеграма (черно-белая) */
+        .tg-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            background: currentColor;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.66-.35-1.02.22-1.61.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.13-.05-.18-.06-.05-.16-.03-.23-.01-.1.02-1.7 1.08-4.79 3.17-.45.31-.86.46-1.23.45-.4-.01-1.18-.23-1.76-.42-.7-.23-1.26-.35-1.21-.74.03-.2.3-.41.84-.63 3.28-1.43 5.47-2.37 6.56-2.83 3.12-1.31 3.77-1.54 4.19-1.55.09 0 .3.02.44.13.11.09.14.21.15.33-.01.06 0 .18-.01.3z'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+            background-color: #111111;
+            transition: background-color 0.2s;
+        }
+        .contact-btn:hover .tg-icon {
+            background-color: #111111;
+        }
+
+        @media (max-width: 640px) {
+            .couple-buttons {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            .couple-buttons .contact-btn {
+                min-width: 160px;
+                max-width: 100%;
+                flex: 1 1 40%;
+            }
+            .couple-buttons {
+                flex-wrap: wrap;
+            }
+            .couple-buttons .contact-btn {
+                flex: 1 1 calc(50% - 1rem);
+                min-width: 130px;
+            }
+            .organizer-wrapper .contact-btn {
+                max-width: 100%;
+            }
+            .tg-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .couple-buttons .contact-btn {
+                padding: 1rem 0.5rem;
+            }
+            .btn-name {
+                font-size: 1.2rem;
+            }
+            .btn-phone {
+                font-size: 0.8rem;
+            }
+            .btn-label {
+                font-size: 0.6rem;
+                letter-spacing: 2px;
+            }
+            .tg-icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        /* ===== Анимации ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #ffffff;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.75rem;
+            color: #111111;
+            border-top: 1px solid #eeeeee;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero" id="hero-section">
+        <div class="names">ALEXEY & ALINA</div>
+        <div class="hero-sub">ПРИГЛАШАЮТ НА СВАДЬБУ</div>
+        <div class="scroll-down" id="scrollArrow">
+            <span>ЛИСТАЙТЕ ВНИЗ</span>
+            <svg class="arrow-icon bounce-animation" viewBox="0 0 24 24">
+                <path d="M12 5 L12 19 M12 19 L8 15 M12 19 L16 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <section class="guests-block fade-up" id="guests-section">
+        <div class="guest-content">
+            <h1 class="greeting-title">ДОРОГИЕ ГОСТИ!</h1>
+            <div class="small-divider"></div>
+            <p class="greeting-text">
+                Мы давно ждали момента, когда вместе с Вами сможем разделить самый важный и счастливый день в нашей жизни – день нашей свадьбы!
+            </p>
+            <div class="calendar-wrapper">
+                <div class="calendar-header">
+                    <div class="month-year">АВГУСТ 2026</div>
+                </div>
+                <div class="weekdays">
+                    <span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span>
+                </div>
+                <div class="calendar-days" id="calendarGrid"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="location-block fade-up">
+        <div class="location-container">
+            <div class="location-card">
+                <h3>ЛОКАЦИЯ</h3>
+                <div class="small-divider"></div>
+                <div class="location-address">
+                    «Zlata Villa»<br>
+                    Минская область, Логойский район<br>
+                    д.Силичи, ул.Полевая ,5<br>
+                </div>
+                <div class="location-image">
+                    <img src="image.png" alt="Здание ресторана">
+                </div>
+                <a href="https://yandex.by/maps/org/zlata_villa/181015179023/?ll=27.820447%2C54.159379&mode=search&sctx=ZAAAAAgBEAAaKAoSCVth%2Bl5D1DtAETJXBtUGF0tAEhIJ%2BfTYlgFn0T8RZmoSvCGNuj8iBgABAgMEBSgKOABAk54GSAFiOnJlYXJyPXNjaGVtZV9Mb2NhbC9HZW91cHBlci9BZHZlcnRzL0N1c3RvbU1heGFkdi9FbmFibGVkPTFiOnJlYXJyPXNjaGVtZV9Mb2NhbC9HZW91cHBlci9BZHZlcnRzL0N1c3RvbU1heGFkdi9NYXhhZHY9MTViRHJlYXJyPXNjaGVtZV9Mb2NhbC9HZW91cHBlci9BZHZlcnRzL0N1c3RvbU1heGFkdi9SZWdpb25JZHM9WzEsMTAxNzRdYkByZWFycj1zY2hlbWVfTG9jYWwvR2VvdXBwZXIvQWR2ZXJ0cy9NYXhhZHZUb3BNaXgvTWF4YWR2Rm9yTWl4PTEwagJ1YZ0BzczMPaABAKgBAL0B0ZFr%2BMIBBo%2Fe4aqiBYICFdC30LvQsNGC0LAg0LLQuNC70LvQsIoCAJICAJoCDGRlc2t0b3AtbWFwcw%3D%3D&sll=27.820447%2C54.159379&sspn=0.016994%2C0.006485&text=злата%20вилла&z=16" 
+                   target="_blank" rel="noopener" class="btn-map">
+                    ПОСТРОИТЬ МАРШРУТ
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-block fade-up">
+        <h2 class="timeline-title">ТАЙМИНГ</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">15:00</div>
+                    <div class="timeline-event">Сбор гостей</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">16:00</div>
+                    <div class="timeline-event">Свадебная церемония</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">17:00</div>
+                    <div class="timeline-event">Фуршет</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">23.00</div>
+                    <div class="timeline-event">Завершение вечера</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dresscode-block fade-up">
+        <div class="dresscode-container">
+            <h2 class="dresscode-title">ДРЕСС-КОД</h2>
+            <div class="small-divider"></div>
+            <p class="dresscode-description">
+                Будем благодарны, если в своих нарядах вы поддержите цветовую палитру нашего праздника.
+            </p>
+            <div class="palette">
+                <div class="color-swatch"><div class="color-square brown"></div></div>
+                <div class="color-swatch"><div class="color-square blue"></div></div>
+                <div class="color-swatch"><div class="color-square burgundi"></div></div>
+            </div>
+
+            <div class="slider-container">
+                <button class="slider-btn btn-left" id="prevSlide">‹</button>
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide"><img src="brown.jpg" alt="Коричневый женский образ"></div>
+                    <div class="slide"><img src="brown_man.jpg" alt="Коричневый мужской образ"></div>
+                    <div class="slide"><img src="blue.jpg" alt="Голубой женский образ"></div>
+                    <div class="slide"><img src="blue_man.jpg" alt="Голубой мужской образ"></div>
+                    <div class="slide"><img src="burgundi.jpg" alt="Бордовый женский образ"></div>
+                    <div class="slide"><img src="burgundi_man.jpg" alt="Бордовый мужской образ"></div>
+                </div>
+                <button class="slider-btn btn-right" id="nextSlide">›</button>
+            </div>
+            <div class="slider-dots" id="sliderDots"></div>
+        </div>
+    </section>
+
+    <section class="wishes-block fade-up">
+        <div class="wishes-content">
+            <h2 class="wishes-title">ПОЖЕЛАНИЯ</h2>
+            <div class="small-divider"></div>
+            <p class="wishes-text">
+                Дорогие гости, мы будем искренне рады, если вместо традиционных цветов вы подарите нам бутылочку вашего любимого алкогольного напитка. 
+                Такой подарок станет тёплым воспоминанием и наполнит наш семейный вечер вашим вкусом и заботой.
+            </p>
+            <p class="wishes-text">
+                Ваше внимание и поддержка — самое главное для нас. С нетерпением ждём встречи!
+            </p>
+        </div>
+    </section>
+
+    <!-- Форма присутствия -->
+    <section class="presence-block fade-up">
+        <div class="presence-container">
+            <h2 class="presence-title">ПРИСУТСТВИЕ</h2>
+            <div class="small-divider"></div>
+            <p class="presence-sub">Пожалуйста, ответьте на несколько вопросов, это поможет нам в организации торжества.</p>
+            
+            <form id="presenceForm" action="https://formspree.io/f/xzdkdjjr" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Фамилия и имя *</label>
+                    <input type="text" id="fullname" name="fullname" required placeholder="Иванова Анна">
+                </div>
+                
+                <div class="form-group">
+                    <label>Сможете ли вы присутствовать? *</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="attendance" value="Да, приду" required> Да, приду</label>
+                        <label><input type="radio" name="attendance" value="Нет, не смогу"> Нет, не смогу</label>
+                        <label><input type="radio" name="attendance" value="Возможно, сообщу позже"> Возможно, сообщу позже</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="companions">Будет ли с вами кто-то еще? (если да, укажите имена)</label>
+                    <input type="text" id="companions" name="companions" placeholder="Например: Алексей, Мария">
+                </div>
+                
+                <div class="form-group">
+                    <label>Предпочтения по напиткам (можно выбрать несколько)</label>
+                    <div class="checkbox-group" id="drinksGroup">
+                        <label><input type="checkbox" name="drinks" value="Шампанское"> Шампанское</label>
+                        <label><input type="checkbox" name="drinks" value="Белое вино"> Белое вино</label>
+                        <label><input type="checkbox" name="drinks" value="Красное вино"> Красное вино</label>
+                        <label><input type="checkbox" name="drinks" value="Водка"> Водка</label>
+                        <label><input type="checkbox" name="drinks" value="Виски"> Виски</label>
+                        <label><input type="checkbox" name="drinks" value="Безалкогольные напитки"> Безалкогольные напитки</label>
+                        <label><input type="checkbox" id="customDrinkCheckbox" value="Свой вариант"> Свой вариант</label>
+                    </div>
+                    <div id="customDrinkField" class="custom-option">
+                        <input type="text" id="customDrink" placeholder="Укажите ваш вариант">
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Отправить</button>
+            </form>
+            <div class="soon-message" id="soonMessage">До скорой встречи!</div>
+        </div>
+    </section>
+
+    <!-- Блок контактов: добавлены значки Telegram (черно-белые) -->
+    <section class="contacts-block fade-up">
+        <div class="contacts-container">
+            <h2 class="contacts-title">КОНТАКТЫ</h2>
+            <div class="small-divider"></div>
+            
+            <p class="young-couple-text">
+                По любым вопросам, предложениям или просто чтобы разделить радость — смело пишите нам, жениху и невесте. 
+                Мы на связи и будем рады ответить!
+            </p>
+            
+            <div class="couple-buttons">
+                <a href="https://t.me/CHAPIHAPACKOL" target="_blank" class="contact-btn">
+                    <span class="btn-label">Жених</span>
+                    <span class="btn-name">
+                        <span class="tg-icon"></span>
+                        Алексей
+                    </span>
+                </a>
+                <a href="https://t.me/smolskaya765" target="_blank" class="contact-btn">
+                    <span class="btn-label">Невеста</span>
+                    <span class="btn-name">
+                        <span class="tg-icon"></span>
+                        Алина
+                    </span>
+                </a>
+            </div>
+            
+            <p class="contacts-text">
+                В день свадьбы мы будем немного заняты, поэтому если Вы захотите
+                подготовить для нас сюрприз или у Вас появились какие-либо организационные вопросы,
+                Вам с радостью поможет наш организатор Диана.
+            </p>
+            
+            <div class="organizer-wrapper">
+                <a href="tel:+375445469533" class="contact-btn">
+                    <span class="btn-label">Организатор</span>
+                    <span class="btn-name">
+                        Диана
+                        <span class="btn-phone">+375 44 546-95-33</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        С НЕТЕРПЕНИЕМ ЖДЁМ ВАС НА НАШЕМ ПРАЗДНИКЕ
+    </footer>
+
+    <script>
+        (function() {
+            // Календарь
+            const year = 2026, month = 7, specialDay = 8;
+            const firstDay = new Date(year, month, 1);
+            let firstWeekday = firstDay.getDay();
+            let offset = firstWeekday === 0 ? 6 : firstWeekday - 1;
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            let daysArray = [];
+            for (let i = 0; i < offset; i++) daysArray.push({ day: null, empty: true });
+            for (let d = 1; d <= daysInMonth; d++) daysArray.push({ day: d, empty: false });
+            const remaining = 42 - daysArray.length;
+            for (let i = 0; i < remaining; i++) daysArray.push({ day: null, empty: true });
+
+            const container = document.getElementById('calendarGrid');
+            if (container) {
+                container.innerHTML = '';
+                daysArray.forEach(cell => {
+                    const dayDiv = document.createElement('div');
+                    dayDiv.className = 'calendar-day';
+                    if (cell.empty) {
+                        dayDiv.classList.add('empty');
+                        dayDiv.textContent = '';
+                    } else if (cell.day === specialDay) {
+                        dayDiv.innerHTML = `<div class="heart-svg">
+                            <svg viewBox="0 0 100 100">
+                                <path fill="#e33f3f" d="M50,90 L20,60 C10,50 5,35 15,20 C25,5 45,10 50,25 C55,10 75,5 85,20 C95,35 90,50 80,60 L50,90Z" stroke="none"/>
+                                <text x="50" y="60" font-size="36" text-anchor="middle" fill="white" font-weight="bold">8</text>
+                            </svg>
+                        </div>`;
+                    } else {
+                        dayDiv.textContent = cell.day;
+                    }
+                    container.appendChild(dayDiv);
+                });
+            }
+
+            // Скролл по стрелке
+            const scrollArrow = document.getElementById('scrollArrow');
+            const guestsBlock = document.getElementById('guests-section');
+            if (scrollArrow && guestsBlock) {
+                scrollArrow.addEventListener('click', () => guestsBlock.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+            }
+
+            // Анимация появления
+            const animated = document.querySelectorAll('.fade-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            animated.forEach(el => observer.observe(el));
+
+            // Слайдер
+            const track = document.getElementById('sliderTrack');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevSlide');
+            const nextBtn = document.getElementById('nextSlide');
+            const dotsContainer = document.getElementById('sliderDots');
+            if (slides.length && track && prevBtn && nextBtn) {
+                let currentIndex = 0;
+                const slideCount = slides.length;
+
+                function updateSlider() {
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    document.querySelectorAll('.dot').forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentIndex);
+                    });
+                }
+
+                function createDots() {
+                    dotsContainer.innerHTML = '';
+                    for (let i = 0; i < slideCount; i++) {
+                        const dot = document.createElement('div');
+                        dot.classList.add('dot');
+                        if (i === currentIndex) dot.classList.add('active');
+                        dot.addEventListener('click', () => {
+                            currentIndex = i;
+                            updateSlider();
+                        });
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+
+                createDots();
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+                    updateSlider();
+                });
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % slideCount;
+                    updateSlider();
+                });
+            }
+
+            // Форма
+            const form = document.getElementById('presenceForm');
+            const soonMessage = document.getElementById('soonMessage');
+            const customCheckbox = document.getElementById('customDrinkCheckbox');
+            const customField = document.getElementById('customDrinkField');
+            const customInput = document.getElementById('customDrink');
+
+            soonMessage.style.display = 'none';
+
+            if (customCheckbox) {
+                customCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        customField.style.display = 'block';
+                        customField.classList.add('active');
+                    } else {
+                        customField.style.display = 'none';
+                        customField.classList.remove('active');
+                    }
+                });
+            }
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('fullname').value.trim();
+                if (!name) {
+                    alert('Пожалуйста, укажите имя и фамилию');
+                    return;
+                }
+
+                if (customCheckbox.checked) {
+                    const customVal = customInput.value.trim();
+                    if (!customVal) {
+                        alert('Пожалуйста, укажите свой вариант напитка');
+                        return;
+                    }
+                }
+
+                const submitBtn = form.querySelector('.submit-btn');
+                submitBtn.textContent = 'Отправляем...';
+                submitBtn.disabled = true;
+
+                const formData = new FormData(form);
+                if (customCheckbox.checked) {
+                    const customVal = customInput.value.trim();
+                    if (customVal) {
+                        formData.append('Свой напиток', customVal);
+                    }
+                }
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        form.style.display = 'none';
+                        soonMessage.style.display = 'block';
+                        soonMessage.textContent = 'Спасибо! Мы получили ваши ответы.';
+                    } else {
+                        throw new Error('Server error');
+                    }
+                } catch (error) {
+                    alert('Упс! Произошла ошибка при отправке. Попробуйте еще раз или напишите нам лично.');
+                    submitBtn.textContent = 'Отправить';
+                    submitBtn.disabled = false;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
