@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -1071,6 +1072,12 @@
                         <input type="text" id="customDrink" placeholder="Укажите ваш вариант">
                     </div>
                 </div>
+
+                <!-- НОВЫЙ БЛОК: Аллергии -->
+                <div class="form-group">
+                    <label for="allergy">Если у вас есть аллергия на какие-то пищевые продукты или напитки, пожалуйста, напишите об этом ниже</label>
+                    <textarea id="allergy" name="allergy" rows="2" placeholder="Например: орехи, лактоза, глютен, цитрусовые, морепродукты, красители и т.п."></textarea>
+                </div>
                 
                 <button type="submit" class="submit-btn">Отправить</button>
             </form>
@@ -1275,6 +1282,9 @@
                         formData.append('Свой напиток', customVal);
                     }
                 }
+
+                // Добавляем аллергию (она уже в FormData, но на всякий случай гарантируем)
+                // FormData автоматически включает textarea с name="allergy"
 
                 try {
                     const response = await fetch(form.action, {
