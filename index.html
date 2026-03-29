@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -39,8 +38,8 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background-image: url('молодые.JPG');
             background-size: cover;
+            background-image: url('молодые.JPG');
             background-position: center;
             background-repeat: no-repeat;
             padding-top: 80px;
@@ -1007,7 +1006,7 @@
                     <div class="slide"><img src="brown_man.jpg" alt="Коричневый мужской образ"></div>
                     <div class="slide"><img src="blue.jpg" alt="Голубой женский образ"></div>
                     <div class="slide"><img src="blue_man.jpg" alt="Голубой мужской образ"></div>
-                    <div class="slide"><img src="burgundi.jpg" alt="Бордовый женский образ"></div>
+                    <div class="slide"><img src="бордовый.jpg" alt="Бордовый женский образ"></div>
                     <div class="slide"><img src="burgundi_man.jpg" alt="Бордовый мужской образ"></div>
                 </div>
                 <button class="slider-btn btn-right" id="nextSlide">›</button>
@@ -1071,12 +1070,6 @@
                     <div id="customDrinkField" class="custom-option">
                         <input type="text" id="customDrink" placeholder="Укажите ваш вариант">
                     </div>
-                </div>
-
-                <!-- НОВЫЙ БЛОК: Аллергии -->
-                <div class="form-group">
-                    <label for="allergy">Если у вас есть аллергия на какие-то пищевые продукты или напитки, пожалуйста, напишите об этом ниже</label>
-                    <textarea id="allergy" name="allergy" rows="2" placeholder="Например: орехи, лактоза, глютен, цитрусовые, морепродукты, красители и т.п."></textarea>
                 </div>
                 
                 <button type="submit" class="submit-btn">Отправить</button>
@@ -1282,9 +1275,6 @@
                         formData.append('Свой напиток', customVal);
                     }
                 }
-
-                // Добавляем аллергию (она уже в FormData, но на всякий случай гарантируем)
-                // FormData автоматически включает textarea с name="allergy"
 
                 try {
                     const response = await fetch(form.action, {
